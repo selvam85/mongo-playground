@@ -14,9 +14,6 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 #Load OpenAI Key from env file
 _ = load_dotenv()
 #openai.api_key = os.environ["OPENAI_API_KEY"]
-#openai.api_key = "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" #Office
-#openai.api_key = "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" #New Key
-#openai.api_key = "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"
 
 @app.route("/")
 def render_index_page():
