@@ -1,0 +1,55 @@
+[
+    {
+      _id: 1,
+      activities: [
+        {
+          activity_id: 1,
+          travel: [
+            {
+              point_id: 1,
+              location: [
+                -76.0,
+                19.1
+              ]
+            },
+            {
+              point_id: 2,
+              location: [
+                -77.0,
+                19.3
+              ]
+            }
+          ]
+        },
+        {
+          activity_id: 2,
+          travel: [
+            {
+              point_id: 3,
+              location: [
+                -99.3,
+                18.2
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      _id: 2,
+      activities: [
+        {
+          activity_id: 3,
+          travel: [
+            {
+              point_id: 4,
+              location: [
+                -75.0,
+                11.1
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

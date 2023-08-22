@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Form Example</title>
+    <style>
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group textarea {
+            margin-bottom: 10px;
+        }
+
+        .form-group:last-child textarea {
+            margin-bottom: 0;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#getQueryBtn').click(function () {
+
+                var use_langchain = $('#use_langchain').prop("checked")
+                console.log(use_langchain)
+
+                var inputData = $('#sampleInputData').val();
+                var outputData = $('#sampleOutputData').val();
+                var data = {
+                    "inputData": inputData,
+                    "outputData": outputData
+                }
+
+                var URL = 'http://127.0.0.1:5000/generate-query?use_langchain=' + use_langchain
+
+                $.ajax({
+                    url: URL,
+                    type: 'POST',
+                    data: JSON.stringify(data),
+                    contentType: "application/json",
+                    success: function (response) {
+                        console.log("Response: ", response);
+                        
+                        var htmlString = response.generatedQuery;
+                        console.log("HTMLString: ", htmlString);
+
+                        //$('#generatedQuery').val(JSON.stringify(response, null, 2));
+                        $('#generatedQuery').val(htmlString);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Mongo Query Generator</h1>
+    <p>
+        This tool generates the MongoDB query for a given data input and and an expected data output.
+        This tool is capable of producing queries for simple to medium complexity use cases.
+    </p>
+
+    <label for="use_langchain" style="font-weight: bold;">Use Langchain ?</label>
+    <input type="checkbox" id="use_langchain"/>
+    
+    <div style="display: flex; margin-top: 20px; width: 100%">
+        <div class="form-group" style="margin-right: 20px; width: 30%">
+            <label for="sampleInputData">Input Data</label>
+            <textarea id="sampleInputData" rows="15"></textarea>
+        </div>
+        <div class="form-group" style="margin-right: 20px; width: 30%">
+            <label for="sampleOutputData">Output Data</label>
+            <textarea id="sampleOutputData" rows="15"></textarea>
+        </div>
+        <div class="form-group" style="width: 30%">
+            <label for="generatedQuery">Generated Query</label>
+            <textarea id="generatedQuery" rows="15"></textarea>
+        </div>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <input id="getQueryBtn" type="submit" value="Get Mongo Query">
+    </div>
+
+    <!-- <div style="display: flex; margin-top: 20px; width: 100%">
+        <div class="form-group" style="width: 93%">
+            <label for="generatedQueryDescription">Explanation about the generated query</label>
+            <textarea id="generatedQueryDescription" rows="4"></textarea>
+        </div>
+    </div> -->
+</body>
+
+</html>
