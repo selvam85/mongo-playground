@@ -7,13 +7,16 @@ readme = "README.md"
 packages = [{include = "mongo_playground"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 flask = "^2.3.2"
 openai = "^0.27.7"
 flask-cors = "^3.0.10"
 streamlit = "^1.25.0"
-langchain = "^0.0.271"
+langchain = "^0.0.320"
 python-dotenv = "^1.0.0"
+pymongo = {extras = ["srv"], version = "^4.5.0"}
+numpy = {version = "^1.26.0", python = "3.11"}
+pandas = "^2.1.1"
 
 
 [build-system]
